@@ -1,0 +1,20 @@
+{
+  "name": "veg-base",
+  "version": "1.0.0",
+  "description": "At first a demo of node, mongo authentication with jwt",
+  "main": "server.js",
+  "start": "nodemon server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "rimoth",
+  "license": "tbc",
+  "dependencies": {
+    "bcrypt": "^0.8.3",
+    "body-parser": "^1.12.4",
+    "express": "^4.12.4",
+    "jsonwebtoken": "^5.0.1",
+    "mongoose": "^4.7.2",
+    "morgan": "^1.5.3"
+  }
+}
