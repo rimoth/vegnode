@@ -30,6 +30,7 @@ function post(req,res,next) {
 				}
 
 				if (!pwMatch) {
+					//ambiguous message not to alert invalid password
 					res.status(401).send({message: 'Invalid email or password.'});
 					return;
 				}
@@ -39,7 +40,10 @@ function post(req,res,next) {
 					role: user.role
 				};
 
+
 				res.status(200).json({
+					// Why are we returning user object?
+					// token has role and email should be able remove user object
 					user: user,
 					token: jwt.sign(payload, config.jwtSecretKey, {expiresInMinutes:60})
 				});

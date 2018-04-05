@@ -25,13 +25,18 @@ function post(req,res,next){
 		return;
     }
 
+    // Need to check if this plant already exists
+
+	// Validate plant type against known types
+
+	// All good let's save our new plant
 	var newPlant = new Plant({
 		name: req.body.name,
-		type: 'veg'
+		type: req.body.type
 	});
 
 	console.log('name '+ req.body.name);
-	console.log('veg '+ req.body.type);
+	console.log('type '+ req.body.type);
 
 
 	newPlant.save(function(err) {
@@ -57,7 +62,8 @@ function put(req,res,next){
 	Plant.findById(req.params.plant_id, function(err, plant){
 		if (err) throw err;
 
-		plant.name = req.body.name
+		plant.name = req.body.name;
+		plant.type = req.body.type;
 
 		plant.save(function(err){
 			if (err) throw err;

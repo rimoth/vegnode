@@ -5,13 +5,14 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var mongoose    = require('mongoose');
 var auth = require('./app/routes/auth.js')
-var setup = require('./app/routes/setup.js');
 var plants = require('./app/routes/plants.js');
+var varieties = require('./app/routes/varieties.js')
 var users = require('./app/routes/users.js');
 var login = require('./app/routes/login.js');
 
 var config = require('./config.js');
-//var setup = require('/app/routes/setup.js');
+//Only used for setup
+var setup = require('./app/routes/setup.js');
 
 var app; // can app be converted to constant???
 var router;
@@ -40,11 +41,19 @@ router.post('/login', login.post);
 
 router.post('/users', auth(), users.post); // no self-registration
 
+// routes for plants
 router.get('/plants', auth(), plants.getAll);
 router.get('/plants/:plant_id', auth(), plants.getById);
 router.post('/plants', auth(), plants.post);
 router.put('/plants/:plant_id', auth(), plants.put);
 router.delete('/plants/:plant_id', auth(), plants.del);
+
+//routes for varieties
+router.get('/plants/:plant_id/varieties', auth(), varieties.getAll);
+router.get('/plants/:plant_id/varieties/:variety_id', auth(), varieties.getById);
+router.post('/plants/:plant_id/varieties', auth(), varieties.post);
+router.put('/plants/:plant_id/varieties/:variety_id', auth(), varieties.put);
+router.delete('/plants/:plant_id/varieties/:variety_id', auth(), varieties.del);
 
 app.use('/api', router);
  

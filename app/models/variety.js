@@ -1,11 +1,16 @@
-// plant.js
+// variety.js
 
 // get an instance of mongoose and mongoose.Schema
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 // set up a mongoose model and pass it using module.exports
-module.exports = mongoose.model('Plant', new Schema({ 
+module.exports = mongoose.model('Variety', new Schema({ 
     name: String,
-    type: String
+    plant: String,
+    plant_id: mongoose.Schema.ObjectId,
+    sow_outside: String,
+    inventory: String,
+    notes: String
 }));
+	
